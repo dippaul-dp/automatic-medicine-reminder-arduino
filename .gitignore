@@ -1,0 +1,15 @@
+# Arduino compilation artifacts
+*.hex
+*.elf
+*.o
+*.bin
+build/
+*.build/
+
+# Operating system & editor metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
