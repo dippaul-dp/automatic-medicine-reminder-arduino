@@ -4,15 +4,16 @@
 [![Language: C++ / Wiring](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Wiring-orange.svg)](https://www.arduino.cc/)
 [![Hardware: RTC DS3231](https://img.shields.io/badge/Hardware-RTC%20DS3231-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Documentation: PDF Report](https://img.shields.io/badge/Documentation-Project%20Report-red.svg)](Automatic_Medicine_Reminder_Box_Report.pdf)
 
-An embedded healthcare automation prototype designed to enhance medication adherence in elderly and chronically ill patients. The system combines a battery-backed **DS3231 Real-Time Clock (RTC)**, an **HD44780-compatible 16x2 LCD**, and active auditory/visual alarms on an **Arduino Uno** edge controller to track time and trigger pre-programmed dosage schedules autonomously[cite: 20].
+An embedded healthcare automation prototype designed to improve medication adherence in elderly and chronically ill patients[cite: 20]. The system utilizes a battery-backed **DS3231 Real-Time Clock (RTC)**, an **HD44780-compatible 16x2 LCD**, and active auditory/visual alert peripherals on an **Arduino Uno** microcontroller to track time and trigger pre-programmed dosage schedules autonomously[cite: 20].
 
 ---
 
 > ### ⚠️ Academic Project Context
 > This repository documents an undergraduate **Level 2, Term II (2-2)** academic coursework group project completed for **Digital Logic Design Sessional (EEE 228)** in the Department of Biomedical Engineering at Chittagong University of Engineering & Technology (CUET)[cite: 20].
-> * **Status**: Educational proof-of-concept prototype built for coursework demonstration[cite: 20].
-> * **Scope**: Focuses on micro-timer synchronization, I2C/parallel peripheral interfacing, and autonomous scheduling logic[cite: 20].
+> * **Status**: Educational proof-of-concept prototype built for laboratory demonstration[cite: 20].
+> * **Project Report**: Complete documentation is available in [`Automatic_Medicine_Reminder_Box_Report.pdf`](Automatic_Medicine_Reminder_Box_Report.pdf)[cite: 20].
 
 ---
 
@@ -37,7 +38,7 @@ flowchart TD
 
     subgraph OUTPUT ["4. User Interface & Alerts"]
         DISP --> LCD["16x2 Character LCD (Pins 2,3,4,5,11,12)"]
-        ALARM --> BUZ["Active Buzzer & LED (Pin 13)"]
+        ALARM --> BUZ["Active Buzzer & Alert LED (Pin 13)"]
         ALARM --> LCD
     end
 ```
@@ -54,19 +55,19 @@ flowchart TD
 | **16x2 LCD (EN)** | `D11`[cite: 20] | Digital Output[cite: 20] | 5V TTL[cite: 20] | Enable pulse pin[cite: 20] |
 | **16x2 LCD (D4–D7)** | `D5`, `D4`, `D3`, `D2`[cite: 20] | 4-bit Parallel Bus[cite: 20] | 5V TTL[cite: 20] | High-nibble character data transmission[cite: 20] |
 | **Buzzer & Alert LED** | `D13`[cite: 20] | Digital Output[cite: 20] | 5V (Active HIGH)[cite: 20] | Auditory buzzer and visual reminder alert[cite: 20] |
-| **10kΩ Potentiometer** | `V0` (LCD Pin 3)[cite: 20] | Analog Voltage Divider[cite: 20] | $0 - 5\text{V}$[cite: 20] | Adjusts LCD liquid crystal contrast[cite: 20] |
+| **10kΩ Potentiometer** | `V0` (LCD Pin 3)[cite: 20] | Analog Voltage Divider[cite: 20] | $0 - 5\text{V}$[cite: 20] | Adjusts LCD contrast[cite: 20] |
 
 ---
 
 ## Pre-Programmed Medication Schedule
 
-The firmware checks the current RTC timestamp against predefined daily slots[cite: 20]:
+The firmware continuously compares the current RTC timestamp against predefined daily slots[cite: 20]:
 
 | Slot Name | Trigger Time | Alert Message | Indicator Behavior |
 | :--- | :--- | :--- | :--- |
-| **Morning Slot**[cite: 20] | `01:16:00` (Demo setup)[cite: 20] | `Reminder: Morning Medicine`[cite: 20] | Continuous Buzzer + Status Text (30s)[cite: 20] |
-| **Evening Slot**[cite: 20] | `18:00:00`[cite: 20] | `Reminder: Evening Medicine`[cite: 20] | Continuous Buzzer + Status Text (30s)[cite: 20] |
-| **Night Slot**[cite: 20] | `22:00:00`[cite: 20] | `Reminder: Goodnight Medicine`[cite: 20] | Continuous Buzzer + Status Text (30s)[cite: 20] |
+| **Morning Slot**[cite: 20] | `01:16:00` (Demo test)[cite: 20] | `Reminder: Morning Medicine`[cite: 20] | Buzzer tone + LCD alert for 30s[cite: 20] |
+| **Evening Slot**[cite: 20] | `18:00:00`[cite: 20] | `Reminder: Evening Medicine`[cite: 20] | Buzzer tone + LCD alert for 30s[cite: 20] |
+| **Night Slot**[cite: 20] | `22:00:00`[cite: 20] | `Reminder: Goodnight Medicine`[cite: 20] | Buzzer tone + LCD alert for 30s[cite: 20] |
 
 ---
 
@@ -77,8 +78,7 @@ automatic-medicine-reminder-arduino/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
-├── docs/
-│   └── project_report.pdf
+├── Automatic_Medicine_Reminder_Box_Report.pdf
 └── src/
     └── medicine_reminder.ino
 ```
@@ -93,11 +93,11 @@ Install the following via the Arduino IDE Library Manager (**Sketch** $\rightarr
 * `LiquidCrystal` (built-in)
 * `Wire` (built-in)
 
-### Uploading Firmware
+### Flashing the Microcontroller
 1. Wire the components according to the pinout table above[cite: 20].
 2. Open `src/medicine_reminder.ino` in the Arduino IDE[cite: 20].
 3. Under **Tools** $\rightarrow$ **Board**, select **Arduino Uno**[cite: 20].
-4. Select your COM port under **Tools** $\rightarrow$ **Port**.
+4. Select your serial port under **Tools** $\rightarrow$ **Port**.
 5. Click **Upload** (`Ctrl + U`).
 
 ---
@@ -118,10 +118,10 @@ Install the following via the Arduino IDE Library Manager (**Sketch** $\rightarr
 ## Citation
 
 ```bibtex
-@misc{muhuri_paul_2026_medbox,
-  title={Automatic Medicine Reminder Box using Arduino},
-  author={Muhuri, Dip and Chowdhury, Sifat and Babu, Nizam Uddin and Paul, Dip and Taki, Jannatul Mawa},
-  year={2026},
-  note={Undergraduate Coursework Project, Digital Logic Design Sessional (EEE 228), Department of Biomedical Engineering, Chittagong University of Engineering and Technology (CUET)}
+@misc{medicine_reminder_2026,
+  author = {Dip Muhuri, Sifat Chowdhury, Nizam Uddin Babu, Dip Paul and Jannatul Mawa Taki},
+  title = {Automatic Medicine Reminder Box using Arduino},
+  year = {2026},
+  note = {Undergraduate Coursework Project, Digital Logic Design Sessional (EEE 228), Department of Biomedical Engineering, Chittagong University of Engineering and Technology (CUET)}
 }
 ```
