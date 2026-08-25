@@ -16,7 +16,13 @@ An embedded healthcare automation prototype designed to improve medication adher
 > * **Project Report**: Complete documentation is available in [`Automatic_Medicine_Reminder_Box_Report.pdf`](Automatic_Medicine_Reminder_Box_Report.pdf)[cite: 20].
 
 ---
-
+### 📄 Project Report Overview
+The complete academic project report (`Automatic_Medicine_Reminder_Box_Report.pdf`) includes:
+* **Circuit Architecture & Schematics**: Complete wiring schematics for the ATmega328P microcontroller, DS3231 RTC module, and 4-bit parallel 16x2 LCD interface.
+* **System Design & Objectives**: Technical breakdown of real-time timekeeping synchronization, scheduling algorithms, and alert actuators (piezo buzzer & LED).
+* **Firmware Implementation**: Full documented source code with automated 24-hour reminder check routines[cite: 20].
+* **Experimental Testing**: Hardware prototype validation records and display state transitions during active reminder windows[cite: 20].
+  
 ## System Architecture
 
 ```mermaid
